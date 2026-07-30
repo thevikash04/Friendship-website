@@ -1,0 +1,673 @@
+// ===== Elements =====
+
+const loading = document.getElementById("loading");
+const home = document.getElementById("home");
+const openBtn = document.getElementById("openBtn");
+
+const envelopeSection = document.getElementById("envelopeSection");
+const envelope = document.querySelector(".envelope");
+
+const gallery = document.getElementById("gallery");
+const finalPage = document.getElementById("final");
+
+const typing = document.getElementById("typing");
+const next = document.getElementById("next");
+
+const slide = document.getElementById("slide");
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+// ===== Loading =====
+
+window.onload = () => {
+
+setTimeout(() => {
+
+loading.style.display = "none";
+
+home.style.display = "flex";
+
+},2500);
+
+};
+
+// ===== Open Surprise =====
+
+openBtn.onclick = () => {
+
+home.style.display = "none";
+
+envelopeSection.style.display = "flex";
+
+};
+
+// ===== Letter =====
+
+const pages = [
+
+`Sometimes life gives us unexpected gifts...
+
+and you are one of mine. 💛`,
+
+`Thank you for every random chat,
+
+every smile,
+
+every laugh,
+
+every memory.
+
+You make ordinary days special. ✨`,
+
+`I don't know what the future holds,
+
+but I hope one thing never changes...
+
+our friendship. ❤️`,
+
+`Dear Gulul,
+
+Thank you for always being yourself.
+
+Thank you for every beautiful memory.
+
+Happy Friendship Day 💛
+
+— Vikash`
+
+];
+
+let page = 0;
+
+// ===== Envelope Open =====
+
+envelope.onclick = () => {
+
+envelope.classList.add("open");
+
+setTimeout(()=>{
+
+typeWriter(pages[page]);
+
+},900);
+
+};
+
+// ===== Typewriter =====
+
+function typeWriter(text){
+
+typing.innerHTML="";
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+typing.innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(type,35);
+
+}
+
+}
+
+type();
+
+}
+
+// ===== Next Button =====
+
+next.onclick = ()=>{
+
+page++;
+
+if(page<pages.length){
+
+typeWriter(pages[page]);
+
+}
+
+else{
+
+envelopeSection.style.display="none";
+
+gallery.style.display="flex";
+
+startSlider();
+
+}
+
+};
+
+// ===== Photo Slider =====
+
+const photos=[
+
+"images/pic1.jpg",
+
+"images/pic2.jpg"
+
+];
+
+let current=0;
+
+function startSlider(){
+
+setInterval(()=>{
+
+current++;
+
+if(current>=photos.length){
+
+current=0;
+
+}
+
+slide.src=photos[current];
+
+},2500);
+
+// 8 sec later Final Page
+
+setTimeout(()=>{
+
+gallery.style.display="none";
+
+finalPage.style.display="flex";
+
+fireworks();
+
+},8000);
+
+}
+
+// ===== Fireworks =====
+
+function fireworks(){
+
+if(typeof confetti==="function"){
+
+let duration=5000;
+
+let end=Date.now()+duration;
+
+(function frame(){
+
+confetti({
+
+particleCount:6,
+
+angle:60,
+
+spread:70,
+
+origin:{x:0}
+
+});
+
+confetti({
+
+particleCount:6,
+
+angle:120,
+
+spread:70,
+
+origin:{x:1}
+
+});
+
+if(Date.now()<end){
+
+requestAnimationFrame(frame);
+
+}
+
+})();
+
+}
+
+}
+
+// ===== Music =====
+
+musicBtn.onclick=()=>{
+
+if(music.paused){
+
+music.play();
+
+musicBtn.innerHTML="⏸️";
+
+}
+
+else{
+
+music.pause();
+
+musicBtn.innerHTML="🎵";
+
+}
+
+};
+/* ==========================
+   PREMIUM EFFECTS
+========================== */
+
+// Floating Hearts
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.innerHTML=["💛","❤️","💖","💕"][Math.floor(Math.random()*4)];
+
+    heart.style.position="fixed";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.top="100vh";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+    heart.style.pointerEvents="none";
+    heart.style.zIndex="999";
+    heart.style.transition="transform 8s linear, opacity 8s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+
+        heart.style.transform="translateY(-120vh)";
+        heart.style.opacity="0";
+
+    },50);
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },8000);
+
+}
+
+setInterval(createHeart,600);
+
+
+/* ==========================
+   Cursor Sparkle
+========================== */
+
+document.addEventListener("mousemove",(e)=>{
+
+    const star=document.createElement("div");
+
+    star.innerHTML="✨";
+
+    star.style.position="fixed";
+    star.style.left=e.clientX+"px";
+    star.style.top=e.clientY+"px";
+    star.style.pointerEvents="none";
+    star.style.fontSize="16px";
+    star.style.transition="1s";
+    star.style.zIndex="999";
+
+    document.body.appendChild(star);
+
+    setTimeout(()=>{
+
+        star.style.opacity="0";
+        star.style.transform="translateY(-25px)";
+
+    },10);
+
+    setTimeout(()=>{
+
+        star.remove();
+
+    },1000);
+
+});
+
+
+/* ==========================
+   Falling Rose Petals
+========================== */
+
+function createRose(){
+
+    const rose=document.createElement("div");
+
+    rose.innerHTML="🌹";
+
+    rose.style.position="fixed";
+    rose.style.left=Math.random()*100+"vw";
+    rose.style.top="-40px";
+    rose.style.fontSize="28px";
+    rose.style.pointerEvents="none";
+    rose.style.transition="transform 10s linear";
+    rose.style.zIndex="998";
+
+    document.body.appendChild(rose);
+
+    setTimeout(()=>{
+
+        rose.style.transform=
+        "translateY(120vh) rotate(720deg)";
+
+    },50);
+
+    setTimeout(()=>{
+
+        rose.remove();
+
+    },10000);
+
+}
+
+setInterval(createRose,2500);
+
+
+/* ==========================
+   Welcome Popup
+========================== */
+
+setTimeout(()=>{
+
+alert("💛 Welcome Gulul 💛\n\nThis little surprise is specially made for you.\n\nHappy Friendship Day ❤️");
+
+},3000);
+/* ==========================
+   SHOOTING STARS
+========================== */
+
+function shootingStar(){
+
+    const star=document.createElement("div");
+
+    star.style.position="fixed";
+    star.style.top=Math.random()*40+"vh";
+    star.style.left="-120px";
+    star.style.width="120px";
+    star.style.height="2px";
+    star.style.background="linear-gradient(to right,white,transparent)";
+    star.style.transform="rotate(-20deg)";
+    star.style.zIndex="999";
+    star.style.pointerEvents="none";
+
+    document.body.appendChild(star);
+
+    let x=-120;
+    let y=parseFloat(star.style.top);
+
+    let move=setInterval(()=>{
+
+        x+=18;
+        y+=6;
+
+        star.style.left=x+"px";
+        star.style.top=y+"px";
+
+        if(x>window.innerWidth+150){
+
+            clearInterval(move);
+            star.remove();
+
+        }
+
+    },20);
+
+}
+
+setInterval(shootingStar,5000);
+
+
+/* ==========================
+   BUTTON GLOW
+========================== */
+
+setInterval(()=>{
+
+    document.querySelectorAll("button").forEach(btn=>{
+
+        btn.animate([
+
+            {
+                transform:"scale(1)",
+                boxShadow:"0 0 15px #ff4d88"
+            },
+
+            {
+                transform:"scale(1.08)",
+                boxShadow:"0 0 35px #ff80ab"
+            },
+
+            {
+                transform:"scale(1)",
+                boxShadow:"0 0 15px #ff4d88"
+            }
+
+        ],{
+
+            duration:1600
+
+        });
+
+    });
+
+},2000);
+
+
+/* ==========================
+   FINAL MESSAGE EFFECT
+========================== */
+
+function showFinalMessage(){
+
+    const box=document.createElement("div");
+
+    box.innerHTML=`
+
+    <h2 style="margin-bottom:15px;">
+    💛 Thank You Gulul 💛
+    </h2>
+
+    <p>
+    Every smile, every conversation and every memory
+    means a lot to me.<br><br>
+
+    Happy Friendship Day ❤️
+    <br><br>
+
+    — Vikash
+    </p>
+
+    `;
+
+    box.style.position="fixed";
+    box.style.left="50%";
+    box.style.top="50%";
+    box.style.transform="translate(-50%,-50%)";
+    box.style.width="320px";
+    box.style.padding="25px";
+    box.style.borderRadius="20px";
+    box.style.background="rgba(255,255,255,.12)";
+    box.style.backdropFilter="blur(15px)";
+    box.style.textAlign="center";
+    box.style.color="white";
+    box.style.zIndex="9999";
+    box.style.boxShadow="0 0 40px rgba(255,255,255,.35)";
+
+    document.body.appendChild(box);
+
+    setTimeout(()=>{
+
+        box.animate([
+
+            {opacity:1},
+
+            {opacity:0}
+
+        ],{
+
+            duration:2500
+
+        });
+
+        setTimeout(()=>{
+
+            box.remove();
+
+        },2500);
+
+    },6000);
+
+}
+
+
+/* Final page aane ke baad popup */
+setTimeout(showFinalMessage,18000);
+/* =====================================
+   PART 6 - GRAND FINALE
+===================================== */
+
+// Gift Box Animation
+function showGift(){
+
+const gift=document.createElement("div");
+
+gift.innerHTML="🎁";
+
+gift.style.position="fixed";
+gift.style.left="50%";
+gift.style.top="50%";
+gift.style.transform="translate(-50%,-50%) scale(0)";
+gift.style.fontSize="90px";
+gift.style.zIndex="99999";
+gift.style.transition="0.8s";
+
+document.body.appendChild(gift);
+
+setTimeout(()=>{
+gift.style.transform="translate(-50%,-50%) scale(1.2)";
+},100);
+
+gift.onclick=()=>{
+
+gift.innerHTML="💛";
+
+gift.style.fontSize="120px";
+
+launchFinalFireworks();
+
+setTimeout(()=>{
+
+gift.remove();
+
+showEnding();
+
+},2500);
+
+};
+
+}
+
+/* =====================================
+   GRAND FIREWORKS
+===================================== */
+
+function launchFinalFireworks(){
+
+if(typeof confetti!=="function") return;
+
+let duration=5000;
+
+let end=Date.now()+duration;
+
+(function frame(){
+
+confetti({
+particleCount:12,
+spread:100,
+origin:{x:Math.random(),y:Math.random()*0.6}
+});
+
+if(Date.now()<end){
+requestAnimationFrame(frame);
+}
+
+})();
+
+}
+
+/* =====================================
+   ENDING MESSAGE
+===================================== */
+
+function showEnding(){
+
+const end=document.createElement("div");
+
+end.innerHTML=`
+
+<h1 style="font-size:42px;color:#FFD54F;">
+Forever Best Friends 💛
+</h1>
+
+<p style="margin-top:20px;font-size:20px;line-height:1.8">
+
+Dear Gulul ❤️
+
+<br><br>
+
+Thank you for every smile,
+every laugh,
+every random conversation,
+and every beautiful memory.
+
+<br><br>
+
+No matter what happens,
+I'll always be grateful
+that we became friends.
+
+<br><br>
+
+✨ Happy Friendship Day ✨
+
+<br><br>
+
+— Vikash
+
+</p>
+
+`;
+
+end.style.position="fixed";
+end.style.left="0";
+end.style.top="0";
+end.style.width="100%";
+end.style.height="100%";
+end.style.background="rgba(0,0,0,.88)";
+end.style.display="flex";
+end.style.flexDirection="column";
+end.style.justifyContent="center";
+end.style.alignItems="center";
+end.style.textAlign="center";
+end.style.padding="25px";
+end.style.zIndex="999999";
+end.style.color="white";
+
+document.body.appendChild(end);
+
+}
+
+/* =====================================
+   AUTO SHOW GIFT
+===================================== */
+
+setTimeout(()=>{
+
+showGift();
+
+},26000);
