@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Best Friend ❤️</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="hearts"></div>
+
+<!-- Loading -->
+
+<div id="loading">
+
+<h1>Loading Your Surprise...</h1>
+
+<div class="loader"></div>
+
+</div>
+
+<!-- Home -->
+
+<section id="home">
+
+<h2>💛 For Someone Very Special 💛</h2>
+
+<p>
+
+Every friendship has a story...
+
+Ours deserves a beautiful website.
+
+</p>
+
+<button id="openBtn">
+
+Open Your Surprise ❤️
+
+</button>
+
+</section>
+
+<!-- Envelope -->
+
+<section id="envelopeSection">
+
+<div class="envelope">
+
+<div class="top"></div>
+
+<div class="letter">
+
+<h1>Dear Gulul 💛</h1>
+
+<p id="typing"></p>
+
+<button id="next">
+
+Next ❤️
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Gallery -->
+
+<section id="gallery">
+
+<h2>Beautiful Memories 📸</h2>
+
+<div class="slider">
+
+<img id="slide" src="images/pic1.jpg">
+
+</div>
+
+</section>
+
+<!-- Final -->
+
+<section id="final">
+
+<h1>
+
+Happy Friendship Day ❤️
+
+</h1>
+
+<p>
+
+Thank you for being the best part of my memories.
+
+No matter where life takes us,
+
+I'll always be grateful that we became friends.
+
+</p>
+
+<h2>
+
+Forever Best Friends 💛
+
+</h2>
+
+</section>
+
+<!-- Music -->
+
+<button id="musicBtn">
+
+<i class="fa-solid fa-music"></i>
+
+</button>
+
+<audio id="music" loop>
+
+<source src="music/music.mp3">
+
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
